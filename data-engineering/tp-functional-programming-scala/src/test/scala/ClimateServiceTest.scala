@@ -11,6 +11,7 @@ class ClimateServiceTest extends AnyFunSuite {
   test("isClimateRelated - climate related words should return true") {
     assert(ClimateService.isClimateRelated("climate change") == true)
     assert(ClimateService.isClimateRelated("IPCC"))
+    assert(ClimateService.isClimateRelated("global warming"))
   }
 
   //@TODO
@@ -18,15 +19,20 @@ class ClimateServiceTest extends AnyFunSuite {
     // our inputs
     val firstRecord = (2003, 1, 355.2)     //help: to acces 2003 of this tuple, you can do firstRecord._1
     val secondRecord = (2004, 1, 375.2)
+    val thirdRecord = (2004, 3, -485.2)
     val list1 = List(firstRecord, secondRecord)
+    val list2 = List(firstRecord, thirdRecord)
 
     // our output of our method "parseRawData"
     val co2RecordWithType = CO2Record(firstRecord._1, firstRecord._2, firstRecord._3)
     val co2RecordWithType2 = CO2Record(secondRecord._1, secondRecord._2, secondRecord._3)
+
     val output = List(Some(co2RecordWithType), Some(co2RecordWithType2))
+    val output2 = List(Some(co2RecordWithType), None)
 
     // we call our function here to test our input and output
     assert(ClimateService.parseRawData(list1) == output)
+    assert(ClimateService.parseRawData(list2) == output2)
   }
 
   //@TODO
