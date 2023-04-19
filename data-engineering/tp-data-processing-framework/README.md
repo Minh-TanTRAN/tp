@@ -5,10 +5,28 @@ To process a large amount of data partitioned on a data lake, you can use data p
 1. Read : https://spark.apache.org/docs/latest/sql-programming-guide.html
 
 Some questions :
-* What is Spark RDD API ?
-* What is Spark Dataset API ?
+* What is Spark RDD API ?  
+RDD was the primary user-facing API in Spark since its inception. At the core, an RDD is an immutable distributed collection of elements of your data, partitioned across nodes in your cluster that can be operated in parallel with a low-level API that offers transformations and actions.
+Spark RDD API is the core data processing API in Apache Spark, which provides a simple and flexible interface for processing data in distributed systems. RDDs are a fault-tolerant, immutable distributed collection of objects that can be processed in parallel across a cluster of machines. RDDs can be created from various data sources and allow developers to write complex data processing algorithms using a set of simple and intuitive operations. The RDD API is the basic building block of all other Spark APIs.  
+source : https://www.databricks.com/glossary/what-is-rdd#:~:text=RDD%20was%20the%20primary%20user,that%20offers%20transformations%20and%20actions.
+***
+* What is Spark Dataset API ?  
+The Apache Spark Dataset API provides a type-safe, object-oriented programming interface.
+The Spark Dataset API is a distributed collection of data organized into named columns, which provides a higher-level, type-safe, and efficient interface for working with structured and semi-structured data in Apache Spark. It combines the benefits of RDDs and DataFrames API and is optimized for performance and parallel processing across a cluster of machines. The Dataset API supports a wide range of data sources, including structured and semi-structured data formats and non-relational data sources.  
+source : https://www.databricks.com/spark/getting-started-with-apache-spark/datasets#:~:text=The%20Apache%20Spark%20Dataset%20API,an%20untyped%20Dataset%20%5BRow%5D%20.  
+***
+
 * With which languages can you use Spark ? 
-* Which data sources or data sinks can Spark work with ? 
+
+Apache Spark can be used with multiple programming languages, including Scala, Java, Python, R, and SQL. This allows developers and data scientists to choose the language that best suits their needs and expertise.  
+source : https://www.knowledgehut.com/blog/programming/scala-vs-python-vs-r-vs-java
+***
+* Which data sources or data sinks can Spark work with ?
+
+Apache Spark can work with a wide range of data sources and sinks, including structured and unstructured data sources, streaming data sources, NoSQL databases, graph data, and machine learning data. This versatility makes Spark a powerful tool for data processing and analytics in various use cases.  
+source : https://kodey.co.uk/2020/05/23/spark-streaming-data-sources-and-sinks/
+***
+
 
 ### Analyse data with Apache Spark and Scala 
 One engineering team of your company created for you a TV News data stored as JSON inside the folder `data-news-json/`.

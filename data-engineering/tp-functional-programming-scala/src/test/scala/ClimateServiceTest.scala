@@ -74,5 +74,4 @@ class ClimateServiceTest extends AnyFunSuite {
     val actualOutput = getMinMaxByYear(input, year)
     assert(actualOutput == expectedOutput)
   }
-
 }
