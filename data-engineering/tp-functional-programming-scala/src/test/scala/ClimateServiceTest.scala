@@ -1,6 +1,9 @@
 import com.github.polomarcus.utils.ClimateService
 import com.github.polomarcus.model.CO2Record
 import org.scalatest.funsuite.AnyFunSuite
+import ClimateService.filterDecemberData
+import ClimateService.getMinMax
+import ClimateService.getMinMaxByYear
 
 //@See https://www.scalatest.org/scaladoc/3.1.2/org/scalatest/funsuite/AnyFunSuite.html
 class ClimateServiceTest extends AnyFunSuite {
@@ -35,8 +38,41 @@ class ClimateServiceTest extends AnyFunSuite {
     assert(ClimateService.parseRawData(list2) == output2)
   }
 
-  //@TODO
   test("filterDecemberData") {
-    assert(true == false)
+    val input = List(Some(CO2Record(2023, 12, 400)),
+      Some(CO2Record(2023, 11, 390)),
+      None,
+      Some(CO2Record(2022, 12, 410)))
+    val expectedOutput = List(CO2Record(2023, 11, 390))
+    val actualOutput = filterDecemberData(input)
+    assert(actualOutput == expectedOutput)
   }
+
+  test("getMinMax should return the minimum and maximum ppm values in the list") {
+    val input = List(
+      CO2Record(2022, 1, 400),
+      CO2Record(2022, 2, 410),
+      CO2Record(2022, 3, 390),
+      CO2Record(2022, 4, 420)
+    )
+    val expectedOutput = (390.0, 420.0)
+    val actualOutput = getMinMax(input)
+    assert(actualOutput == expectedOutput)
+  }
+
+  test("getMinMaxByYear should return the minimum and maximum ppm values for a given year") {
+    val input = List(
+      CO2Record(2022, 1, 400),
+      CO2Record(2022, 2, 410),
+      CO2Record(2022, 3, 390),
+      CO2Record(2023, 1, 420),
+      CO2Record(2023, 2, 430),
+      CO2Record(2023, 3, 410)
+    )
+    val year = 2023
+    val expectedOutput = (410.0, 430.0)
+    val actualOutput = getMinMaxByYear(input, year)
+    assert(actualOutput == expectedOutput)
+  }
+
 }
